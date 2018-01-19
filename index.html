@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica"> <!--  Definindo a aplicação do angular  -->
+<head>
+	<title>Lista telefonica</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+	<script src="js/angular/angular.min.js"></script>
+	<script src="js/angular/ngMask.min.js"></script>
+	<script src="js/angular/angular-locale_pt-br.js"></script>
+	<script src="js/app.js"></script>
+	<meta charset="utf-8">
+</head>
+<body ng-controller="listaTelefonicaController">  <!-- Definindo o meu controle -->
+
+<section id="teste-angular">
+
+<div class="jumbotron">
+	
+	<h3>{{ titulo }}</h3>  <!--  Exibindo o título pelo angular, usando a interpolação das chaves  -->
+
+	<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?">
+
+	<table class="table table-striped" ng-show="contatos.length > 0">
+		<tr>
+			<th></th>
+			<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+			<th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+			<th>Operadora</th>
+			<th>Data</th>
+			<th>Foto de perfil</th>
+			<th></th>
+		</tr>
+		<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: criterioDeBusca} | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao"> <!--  Criando um laço de repetição, atribui o array "contatos" em uma variável temporária dentro do loop e filtrando ela com o filter, para filtrar só por nome -->
+			<td><input type="checkbox" ng-model="contato.selecionado"></td>
+			<td>{{contato.nome}}</td>
+			<td>{{contato.telefone}}</td>
+			<td>{{contato.operadora | lowercase}}</td>
+			<td>{{contato.data | date:'dd/MM/yyyy'}}</td>
+			<td><img ng-src="imagens/contato/{{contato.foto}}" alt="Foto de perfil" style="max-width: 60%;"></td>
+			<td><button class="btn btn-primary ajustar-margin" ng-click="alterarContato(contato);">Editar</button></td>
+		</tr>
+	</table>
+
+	<form name="contatoForm" enctype="multipart/form-data">
+		<input class="form-control" type="text" ng-model="cadContato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="3">  <!--  Criando um ng-model, inserindo um valor da View para o Controle  -->
+		<input class="form-control" type="text" ng-model="cadContato.telefone" placeholder="Telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" mask="9?9999-9999"> <!--  Essas variáveis são criadas no controller  -->
+		<select class="form-control" ng-model="cadContato.operadora" ng-required="true" name="opera">
+			<!--ng-options="operadora.nome + ' (' + (operadora.preco | currency) + ')' group by operadora.categoria for operadora in operadoras | orderBy:'nome'"     código do ng options para por dinamicamente com array-->
+			<option value="">Selecione uma operadora</option>
+			<option value="Oi">Oi (R$: 2,00)</option>
+			<option value="Vivo">Vivo (R$: 3,00)</option>
+			<option value="Tim">Tim (R$: 4,00)</option>
+			<option value="Embratel">Embratel (R$: 2,00)</option>
+			<option value="GVT">GVT (R$: 3,00)</option>
+		</select>
+		<input type="file" name="foto" class="form-control" placeholder="Insira a foto" custom-on-change="fileChanged">
+		<img ng-src="imagens/contato/{{cadContato.foto}}" class="foto-perfil">
+	</form>
+	<div class="alert alert-danger" ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty">
+		Por favor preencha o nome
+	</div>
+	<div class="alert alert-danger" ng-show="contatoForm.nome.$error.minlength">
+		O campo deve ter no minimo 3 caracteres
+	</div>
+	<div class="alert alert-danger" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty">
+		Por favor preencha o telefone
+	</div>
+	<div class="alert alert-danger" ng-show="contatoForm.telefone.$error.pattern">
+		O campo telefone deve ter o formato DDDDD-DDDD
+	</div>
+	<div class="alert alert-danger" ng-show="contatoForm.opera.$error.required && contatoForm.opera.$dirty">
+		Por favor preencha a operadora
+	</div>
+	<button class="btn btn-primary btn-block" ng-click="adicionarContato(cadContato, file);" ng-disabled="contatoForm.$invalid" ng-if="!alterar">Inserir Contato</button> <!--  Estou passando os dados acima por uma função, que insere as variaveis novas no array  -->
+	<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos);" ng-disabled="isContatoSelecionado(contatos);" ng-if="!isContatoSelecionado(contatos)">Apagar Contatos</button>
+	<button class="btn btn-primary btn-block" ng-click="alterarContatoBanco(cadContato, file);" ng-disabled="contatoForm.$invalid" ng-if="alterar">Salvar</button>
+
+</div>
+
+<div ng-include="'pages/footer.html'"></div>
+
+</section>
+</body>
+</html>

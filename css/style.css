@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+* {
+	font-family: 'Roboto', sans-serif !important;
+	color: #000 !important;
+} 
+
+.titulo-principal{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.jumbotron{
+	width: 700px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+
+.table{
+	margin-top:20px;
+}
+
+.form-control{
+	margin-bottom: 5px;a
+}
+
+.btn{
+	color: #fff !important;
+	margin-top: 10px !important;
+	cursor: pointer;
+}
+
+.selecionado{
+	background: yellow !important;
+}
+
+.negrito{
+	font-weight: 400;
+}
+
+img[src*="perfilPadrao"] {
+    transform: rotate3d(0,0,1, -30deg);
+}
+
+.foto-perfil{
+	width: 150px;
+    margin: 25px 0px;
+}
