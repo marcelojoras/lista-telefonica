@@ -117,7 +117,7 @@ angular.module("listaTelefonica").controller('listaTelefonicaController',functio
 
 		data.append('_method', 'PATCH');
 
-		$http.post("../lista-telefonica/controle/contatocontrole.php", data, {
+		$http.put("../lista-telefonica/controle/contatocontrole.php", data, {
 				data: data,
 				withCredentials: true,
                	headers: {

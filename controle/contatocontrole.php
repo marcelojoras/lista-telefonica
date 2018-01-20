@@ -9,9 +9,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'POST':
-		var_dump($_POST);
-		die();
-		//fazendo o upload da imagem de perfil
 		try{
     		if($_FILES['file']['name']!=''){
         		$wide = WideImage::load($_FILES['file']['tmp_name']);
@@ -77,7 +74,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 		break;
 
-	case 'PATCH':
+	case 'PUT':
 		var_dump($_FILES);
 		var_dump($_POST);
 		$data = json_decode(file_get_contents("php://input"), true);
