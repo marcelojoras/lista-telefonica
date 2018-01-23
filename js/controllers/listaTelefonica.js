@@ -1,5 +1,6 @@
 angular.module("listaTelefonica")
-	.controller('listaTelefonicaController',function($scope, $filter, contatosAPI){ //criando meu controle, primeiro localizei o módulo e atribui o controle
+	.controller('listaTelefonicaController',function($scope, $filter, contatosAPI, serialGenerator){ //criando meu controle, primeiro localizei o módulo e atribui o controle
+		console.log(serialGenerator.generate());
 		$scope.titulo = "Lista Telefônica"; //criando uma variável comum, está guardando apenas um texto.
 		$scope.criterioDeOrdenacao = 'nome';
 		$scope.contatos = [];//criando um array com os contatos, nome e telefone sao as chaves desse array

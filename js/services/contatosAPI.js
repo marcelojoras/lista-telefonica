@@ -1,11 +1,11 @@
-angular.module('listaTelefonica').factory('contatosAPI', function($http){
+angular.module('listaTelefonica').factory('contatosAPI', function($http, config){
 
 	var _getContatos = function(){
-		return $http.get("../lista-telefonica/controle/contatocontrole.php");
+		return $http.get(config.controllerPhpUrl);
 	};
 
 	var _setContatos = function(data){
-		return $http.post("../lista-telefonica/controle/contatocontrole.php", data, {
+		return $http.post(config.controllerPhpUrl, data, {
 				withCredentials: true,
                	headers: {
                  	'Content-Type': undefined,
@@ -16,11 +16,11 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http){
 	};
 
 	var _updateContatos = function(data){
-		return $http.put("../lista-telefonica/controle/contatocontrole.php", data);
+		return $http.put(config.controllerPhpUrl, data);
 	};
 
 	var _deletarContatos = function(data){
-		return $http.delete("../lista-telefonica/controle/contatocontrole.php", {data: data});
+		return $http.delete(config.controllerPhpUrl, {data: data});
 	};
 
 	return {
