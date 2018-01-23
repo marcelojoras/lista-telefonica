@@ -75,34 +75,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		break;
 
 	case 'PUT':
-		var_dump($_FILES);
-		var_dump($_POST);
-		$data = json_decode(file_get_contents("php://input"), true);
-		var_dump($data);
-		die();
-		//fazendo o upload da imagem de perfil
-		try{
-    		if($_FILES['file']['name']!=''){
-        		$wide = WideImage::load($_FILES['file']['tmp_name']);
-	            $resized = $wide->resize(400);
-	            $novoNome = strtolower('['.rand().']'.'.png');
-	            $resize = $resized->saveToFile('../imagens/contato/'.$novoNome);
-        	}else{
-        		$novoNome = 'perfilPadrao.jpg';
-        	}//fecha if
-	    }catch(Exception $exc){
-	        echo 'erro ao cadastrar foto de perfil '.$exc;
-	    }//fecha catch
 
-	    if(isset($_POST['contato']))
-	    	$contatoAlterado = json_decode($_POST['contato'], true);
-	   	else{
-			$data = json_decode(file_get_contents("php://input"), true);
-			$contatoAlterado = $data['contato'];
-	   	}
-
-	   	if($novoNome!='perfilPadrao.jpg' || $contatoAlterado['foto']=='perfilPadrao.jpg')
-	   		$contatoAlterado['foto'] = $novoNome;
+	    $contatoAlterado = json_decode(file_get_contents("php://input"), true);
 
 		$erros = [];
 
