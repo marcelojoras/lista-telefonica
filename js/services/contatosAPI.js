@@ -5,6 +5,7 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, config)
 	};
 
 	var _setContatos = function(data){
+		console.log(data);
 		return $http.post(config.controllerPhpUrl, data, {
 				withCredentials: true,
                	headers: {

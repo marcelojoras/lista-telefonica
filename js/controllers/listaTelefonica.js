@@ -14,6 +14,7 @@ angular.module("listaTelefonica")
 		$scope.class1 = "selecionado";
 		$scope.class2 = "negrito";
 		$scope.showimage = false;
+		$scope.error = 'Não foi possível carregar os dados!';
 		$scope.apagarContatos = function(contatos){
 			var delContatos = contatos.filter(function(contato){
 				if (contato.selecionado) return contato;
@@ -65,6 +66,7 @@ angular.module("listaTelefonica")
 				}
 			}).catch(function(e){
 				console.log('error' + e);
+				$scope.error = 'Não foi possível se conectar com o banco!';
 			});
 		};
 

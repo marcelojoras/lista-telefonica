@@ -48,3 +48,20 @@ img[src*="perfilPadrao"] {
 	width: 150px;
     margin: 25px 0px;
 }
+
+.ui-alert{
+	background: #f2dede;
+	padding: 20px;
+	border-radius: 5px;
+	margin-bottom: 14px;
+}
+
+.ui-alert-title{
+	color: #af4341 !important;
+	font-weight: 700;
+	font-size: 22px;
+}
+
+.ui-alert-messege{
+	color: #af4341 !important;
+}
