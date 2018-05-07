@@ -19,7 +19,7 @@ class ContatoDAO{
 			$stat->bindValue(2, $c['telefone']);
 			$stat->bindValue(3, $c['data']);
 			$stat->bindValue(4, $c['operadora']);
-			$stat->bindValue(5, $c['foto']);		
+			$stat->bindValue(5, $c['foto']);
 			
 			//encerramento da conexão
 			$this->conexao = null;
