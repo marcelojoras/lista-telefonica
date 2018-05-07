@@ -5,7 +5,6 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, config)
 	};
 
 	var _setContatos = function(data){
-		console.log(data);
 		return $http.post(config.controllerPhpUrl, data, {
 				withCredentials: true,
                	headers: {
@@ -17,7 +16,14 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, config)
 	};
 
 	var _updateContatos = function(data){
-		return $http.put(config.controllerPhpUrl, data);
+		return $http.post(config.controllerAlteraPhpUrl, data, {
+				withCredentials: true,
+				headers: {
+					'Content-Type': undefined,
+                 	'Access-Control-Allow-Origin': '*'
+                 },
+                 transformRequest: angular.identity
+			});
 	};
 
 	var _deletarContatos = function(data){

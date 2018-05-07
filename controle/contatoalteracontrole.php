@@ -3,10 +3,6 @@ include '../dao/contatodao.class.php';
 include '../util/wideimage/WideImage.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
-	case 'GET':
-		echo (new ContatoDAO())->buscarContatos();
-
-		break;
 
 	case 'POST':
 		try{
@@ -29,47 +25,26 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			$contato = $data['contato'];
 	   	}
 
-
-		$contato['foto'] = $novoNome;
+	    $contato['foto'] = $novoNome;
 
 		$erros = [];
 
 		if(!isset($contato['nome']) || is_null($contato['nome'])){
 			$erros[] = "Preencha o nome";
-		}
+		} 
 
 		if(!isset($contato['data'])){
-			$contato['data'] = '';
+			$contatoAlterado['data'] = '';
 		}
 
 		if(count($erros)>0){
-			die(json_encode($erros));
+			die("Não foi possível alterar no banco!");
 		}
 
-		if((new ContatoDAO())->adicionarContato($contato)){
-			header("HTTP/1.0 201 Criado", 201, true);
+		if((new ContatoDAO())->alterarContato($contato)){
+			header("HTTP/1.0 202 Aceito", 202, true);
 		}else{
-			die("Não foi possível cadastrar no banco");
-		}
-
-		break;
-
-	case 'DELETE':
-
-		$contatos = json_decode(file_get_contents("php://input"), true);
-
-		echo json_encode($contatos);
-
-		$ids = [];
-
-		foreach ($contatos as $contato) {
-			$ids[] = $contato["id"];
-		}
-
-		if((new ContatoDAO())->deletarContatos($ids)){
-			header("HTTP/1.0 202 Criado", 202, true);
-		}else{
-			die("Não foi possível deletar no banco");
+			die("Não foi possível alterar no banco");
 		}
 
 		break;

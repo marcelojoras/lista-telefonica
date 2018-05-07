@@ -93,9 +93,18 @@ angular.module("listaTelefonica")
 			$scope.showimage = true;
 		};
 
-		$scope.alterarContatoBanco = function(contatoAlterado, file){
+		$scope.alterarContatoBanco = function(c, file){
 
-			contatosAPI.updateContatos(contatoAlterado).then(function(p){
+			//criando um formdata (conjunto de variaveis de formulario) vazio
+			var data = new FormData();
+
+			//adicionando arquivo na variavel File
+			data.append('file', file);
+
+			//adicionando contato na variavel contato
+			data.append('contato', JSON.stringify(c));
+
+			contatosAPI.updateContatos(data).then(function(p){
 				if(p.status==202){
 					delete $scope.cadContato;
 					$scope.contatoForm.$setPristine();

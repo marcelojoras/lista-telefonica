@@ -55,13 +55,14 @@ class ContatoDAO{
 
 	public function alterarContato($contato){
 		try{
-			$stat=$this->conexao->prepare("update contato set nome = ?, telefone = ?, data = ?, operadora = ? where id = ?");
+			$stat=$this->conexao->prepare("update contato set nome = ?, telefone = ?, data = ?, foto = ?, operadora = ? where id = ?");
 
 			$stat->bindValue(1,$contato['nome']);
 			$stat->bindValue(2,$contato['telefone']);
 			$stat->bindValue(3,$contato['data']);
-			$stat->bindValue(4,$contato['operadora']);
-			$stat->bindValue(5,$contato['id']);
+			$stat->bindValue(4,$contato['foto']);
+			$stat->bindValue(5,$contato['operadora']);
+			$stat->bindValue(6,$contato['id']);
 
 
 			$this->conexao = null;
