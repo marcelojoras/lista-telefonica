@@ -22,8 +22,8 @@
 
 <div class="jumbotron">
 
-	<ui-alert title="Um problema Ocorreu!">
-		Não foi possível carregar os dados!!
+	<ui-alert title="Um problema Ocorreu!" ng-if="error"> <!-- Diretiva de erro se $scope.error tem algo nele -->
+		{{error}}
 	</ui-alert>
 	
 	<h3>{{ titulo + ' Marcelo'}}</h3>  <!--  Exibindo o título pelo angular, usando a interpolação das chaves  -->
