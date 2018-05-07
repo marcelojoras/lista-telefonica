@@ -59,7 +59,7 @@
 			<option value="GVT">GVT (R$: 3,00)</option>
 		</select>
 		<input type="file" name="foto" class="form-control" placeholder="Insira a foto" custom-on-change="fileChanged">
-		<img ng-src="imagens/contato/{{cadContato.foto}}" class="foto-perfil">
+		<img ng-if="showimage" ng-src="imagens/contato/{{cadContato.foto}}" class="foto-perfil">
 	</form>
 	<div class="alert alert-danger" ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty">
 		Por favor preencha o nome

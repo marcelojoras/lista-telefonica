@@ -13,6 +13,7 @@ angular.module("listaTelefonica")
 		// };
 		$scope.class1 = "selecionado";
 		$scope.class2 = "negrito";
+		$scope.showimage = false;
 		$scope.apagarContatos = function(contatos){
 			var delContatos = contatos.filter(function(contato){
 				if (contato.selecionado) return contato;
@@ -86,6 +87,7 @@ angular.module("listaTelefonica")
 		$scope.alterarContato = function(contato){
 			$scope.alterar = true;
 			$scope.cadContato = angular.copy(contato);
+			$scope.showimage = true;
 		};
 
 		$scope.alterarContatoBanco = function(contatoAlterado, file){
@@ -96,6 +98,7 @@ angular.module("listaTelefonica")
 					$scope.contatoForm.$setPristine();
 					$scope.buscarContatos();
 					$scope.alterar = false;
+					$scope.showimage = false;
 				}else{
 					alert("deu erro");
 					console.log(p);

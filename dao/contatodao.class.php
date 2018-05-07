@@ -18,7 +18,7 @@ class ContatoDAO{
 			$stat->bindValue(1, $c['nome']);
 			$stat->bindValue(2, $c['telefone']);
 			$stat->bindValue(3, $c['data']);
-			$stat->bindValue(4, $c['operadora']['nome']);
+			$stat->bindValue(4, $c['operadora']);
 			$stat->bindValue(5, $c['foto']);		
 			
 			//encerramento da conexão
