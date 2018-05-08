@@ -1,1 +1,1 @@
-angular.module("listaTelefonica", ["ngMask"]); //Criando meu módulo (aplicação)
+angular.module("listaTelefonica", ["ngMask", "serialGenerator"]); //Criando meu módulo (aplicação)
