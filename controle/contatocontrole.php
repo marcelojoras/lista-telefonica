@@ -5,8 +5,7 @@ include '../util/wideimage/WideImage.php';
 switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
 		echo (new ContatoDAO())->buscarContatos();
-
-		break;
+	break;
 
 	case 'POST':
 		try{
@@ -29,7 +28,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 			$contato = $data['contato'];
 	   	}
 
-
 		$contato['foto'] = $novoNome;
 
 		$erros = [];
@@ -51,11 +49,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		}else{
 			die("Não foi possível cadastrar no banco");
 		}
-
-		break;
+	break;
 
 	case 'DELETE':
-
 		$contatos = json_decode(file_get_contents("php://input"), true);
 
 		echo json_encode($contatos);
@@ -73,12 +69,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		}else{
 			die("Não foi possível deletar no banco");
 		}
-
-		break;
+	break;
 	
 	default:
 		//code
-		break;
+	break;
 }
-
 ?>

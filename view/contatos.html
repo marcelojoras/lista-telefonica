@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="listaTelefonica"> <!--  Definindo a aplicação do angular  -->
-<head>
-	<title>Lista telefonica</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
-	<script src="util/angular/angular.min.js"></script>
-	<script src="util/angular/ngMask.min.js"></script>
-	<script src="util/angular/angular-locale_pt-br.js"></script>
-	<script src="lib/serialGenerator/serialGenerator.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/controllers/listaTelefonica.js"></script>
-	<script src="js/services/contatosAPI.js"></script>
-	<script src="js/config/serialGeneratorConfig.js"></script>
-	<script src="js/value/configValue.js"></script>
-	<script src="js/directives/uiAlertDirective.js"></script>
-	<meta charset="utf-8">
-</head>
-<body ng-controller="listaTelefonicaController">  
-
-<div class="jumbotron">
+<div class="jumbotron"  ng-controller="listaTelefonicaController">
 
 	<ui-alert title="Um problema Ocorreu!" ng-if="error"> <!-- Diretiva de erro se $scope.error tem algo nele -->
 		{{error}}
@@ -84,8 +64,3 @@
 	<button class="btn btn-primary btn-block" ng-click="alterarContatoBanco(cadContato, file);" ng-disabled="contatoForm.$invalid" ng-if="alterar">Salvar</button>
 
 </div>
-
-<div ng-include="'view/footer.html'"></div>
-
-</body>
-</html>
