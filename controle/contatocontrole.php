@@ -60,13 +60,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 		echo json_encode($contatos);
 
+		$fotos = [];
 		$ids = [];
 
 		foreach ($contatos as $contato) {
+			$fotos[] = $contato["foto"];
 			$ids[] = $contato["id"];
 		}
 
-		if((new ContatoDAO())->deletarContatos($ids)){
+		if((new ContatoDAO())->deletarContatos($ids, $fotos)){
 			header("HTTP/1.0 202 Criado", 202, true);
 		}else{
 			die("Não foi possível deletar no banco");

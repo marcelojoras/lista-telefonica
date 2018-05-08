@@ -43,8 +43,14 @@ class ContatoDAO{
 	}//fecha buscarUsuarios
 
 	//Método Deletar
-	public function deletarContatos($ids){
+	public function deletarContatos($ids, $fotos){
 		try{
+			foreach($fotos as $foto){
+				if($foto != 'perfilPadrao.jpg'){
+					unlink('../imagens/contato/'.$foto);
+				}
+			}
+			
 			$stat = $this->conexao->query("delete from contato where id in(".implode(',', $ids).")");
 
 			return $stat->execute();
