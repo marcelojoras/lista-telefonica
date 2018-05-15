@@ -74,11 +74,19 @@ angular.module("listaTelefonica")
 		$scope.buscarContatos = function(){
 			contatosAPI.getContatos().then(function(p){
 				$scope.contatos = p.data;
-				// setTimeout(function(){$scope.$apply();},50);
 			}).catch(function(e){
 				console.log(e);
 			});
 		};
+
+		$scope.teste = function(){
+			setTimeout(function(){
+				console.log('teste');
+				$scope.teste();
+			},4000);
+		};
+
+		$scope.teste();
 
 		$scope.fileChanged = function(event){
 			$scope.file = event.target.files[0];
@@ -119,7 +127,7 @@ angular.module("listaTelefonica")
 				console.log('error' + e);
 			});
 		};
-		
+
 	})
 	.directive('customOnChange', function() {
 	   return {

@@ -20,9 +20,9 @@ angular.module('listaTelefonica').factory('contatosAPI', function($http, config)
 				withCredentials: true,
 				headers: {
 					'Content-Type': undefined,
-                 	'Access-Control-Allow-Origin': '*'
-                 },
-                 transformRequest: angular.identity
+          'Access-Control-Allow-Origin': '*'
+        },
+        transformRequest: angular.identity
 			});
 	};
 
